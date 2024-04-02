@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Register</title>
+</head>
+<body>
+<main>
+    <div class="wrapper">
+        <form name="form" action="presentation/register/register" method="post">
+            <div>
+                <div><h1 class="register-nombre">Register</h1></div>
+                <div class="contendor">
+                    <div class="etiqueta">Cedula:</div>
+                    <div class="campo"><input type="text" name="idFld" id="idFld" placeholder="Cedula" ></div>
+                </div>
+                <div class="contendor">
+                    <div class="etiqueta">Clave:</div>
+                    <div class="campo"><input type="text" name="claveFld" id="claveFld" placeholder="Clave" ></div>
+                </div>
+                <div class="contendor">
+                    <div class="etiqueta">Nombre:</div>
+                    <div class="campo"><input type="text" name="nombreFld" id="nombreFld" placeholder="Nombre" ></div>
+                </div>
+                <div class="contendor">
+                    <div class="etiqueta">Telefono:</div>
+                    <div class="campo"><input type="text" name="telefonoFld" id="telefonoFld" placeholder="Telefono" ></div>
+                </div>
+                <div class="contendor">
+                    <div class="etiqueta">Correo:</div>
+                    <div class="campo"><input type="text" name="correoFld" id="correoFld" placeholder="Correo" ></div>
+                </div>
+                <div class="contendor">
+                    <div class="etiqueta"> Medio de pago:</div>
+                    <div class="campo"><input type="text" name="tarjetaFld" id="tarjetaFld" placeholder="Tarjeta" ></div>
+                </div>
+                <div><button type="submit" class="btn-login" name="register"> Register </button> </div>
+            </div>
+        </form>
+        </div>
+</main>
+
+</body>
+</html>

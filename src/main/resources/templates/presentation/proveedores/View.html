@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>probando la herencia</title>
+    <style>
+        table {border-collapse: collapse;width: 100%}
+        th, td {padding: 8px;text-align: left;border-bottom: 1px solid gray;}
+        tr:hover {background-color: brown}
+    </style>
+</head>
+<body>
+
+<header>Clientes</header>
+<div class="centered">
+    <table style="border: 1px solid blue">
+<!--        idProveedor VARCHAR(12) NOT NULL,-->
+<!--        Nombre VARCHAR(100),-->
+<!--        Contrasena VARCHAR(100),-->
+<!--        CorreoElectronico VARCHAR(100),-->
+<!--        Telefono integer,-->
+<!--        Direccion varchar(50),-->
+<!--        constraint PK_proveedor primary key(idProveedor)-->
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Contrasena</th>
+            <th>CorreoElectronico</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+
+            <th>...</th>
+        </tr>
+
+        <!-- Itera sobre la lista de proveedores y muestra sus datos -->
+        <tr th:each="p : ${proveedores}">
+            <td th:text="${p.idProveedor}"/>
+            <td th:text="${p.Nombre}"/>
+            <td th:text="${p.Contrasena}"/>
+            <td th:text ="${p.CorreoElectronico}"/>
+            <td th:text ="${p.telefono}"/>
+            <td th:text ="${p.Direccion}"/>
+        </tr>
+    </table>
+</div>
+
+<footer>TESTING</footer>
+
+</body>
+</html>
