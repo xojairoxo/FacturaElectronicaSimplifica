@@ -9,22 +9,28 @@ import java.util.Objects;
 public class ProveedorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID_Proveedor")
+    @Column(name = "id_proveedor")
     private String idProveedor;
     @Basic
-    @Column(name = "Nombre")
+    @Column(name = "cedula")
+    private String cedula;
+    @Basic
+    @Column(name = "nombre")
     private String nombre;
     @Basic
-    @Column(name = "Contrasena")
+    @Column(name = "usuario")
+    private String usuario;
+    @Basic
+    @Column(name = "contrasena")
     private String contrasena;
     @Basic
-    @Column(name = "CorreoElectronico")
+    @Column(name = "correo_electronico")
     private String correoElectronico;
     @Basic
-    @Column(name = "Telefono")
+    @Column(name = "telefono")
     private Integer telefono;
     @Basic
-    @Column(name = "Direccion")
+    @Column(name = "direccion")
     private String direccion;
 
     public String getIdProveedor() {
@@ -35,12 +41,28 @@ public class ProveedorEntity {
         this.idProveedor = idProveedor;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getContrasena() {
@@ -80,11 +102,11 @@ public class ProveedorEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProveedorEntity that = (ProveedorEntity) o;
-        return Objects.equals(idProveedor, that.idProveedor) && Objects.equals(nombre, that.nombre) && Objects.equals(contrasena, that.contrasena) && Objects.equals(correoElectronico, that.correoElectronico) && Objects.equals(telefono, that.telefono) && Objects.equals(direccion, that.direccion);
+        return Objects.equals(idProveedor, that.idProveedor) && Objects.equals(cedula, that.cedula) && Objects.equals(nombre, that.nombre) && Objects.equals(usuario, that.usuario) && Objects.equals(contrasena, that.contrasena) && Objects.equals(correoElectronico, that.correoElectronico) && Objects.equals(telefono, that.telefono) && Objects.equals(direccion, that.direccion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idProveedor, nombre, contrasena, correoElectronico, telefono, direccion);
+        return Objects.hash(idProveedor, cedula, nombre, usuario, contrasena, correoElectronico, telefono, direccion);
     }
 }

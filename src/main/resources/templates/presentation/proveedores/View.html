@@ -35,10 +35,11 @@
 
         <!-- Itera sobre la lista de proveedores y muestra sus datos -->
         <tr th:each="p : ${proveedores}">
-            <td th:text="${p.idProveedor}"/>
+            <td th:text="${p.cedula}"/>
             <td th:text="${p.Nombre}"/>
+            <td th:text="${p.usuario}"/>
             <td th:text="${p.Contrasena}"/>
-            <td th:text ="${p.CorreoElectronico}"/>
+            <td th:text ="${p.correoElectronico}"/>
             <td th:text ="${p.telefono}"/>
             <td th:text ="${p.Direccion}"/>
         </tr>

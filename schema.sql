@@ -3,31 +3,34 @@ CREATE DATABASE FacturaElectronicaSimplifica;
 USE FacturaElectronicaSimplifica;
 
 
-
+DROP table Proveedor;
 CREATE TABLE Proveedor (
-ID_Proveedor VARCHAR(12) NOT NULL, 
-Nombre VARCHAR(100),
-Contrasena VARCHAR(100),
-CorreoElectronico VARCHAR(100),
-Telefono integer,
-Direccion varchar(50),
-constraint PK_proveedor primary key(ID_Proveedor)
- ); 
+    id_proveedor INT auto_increment, 
+    cedula VARCHAR(12) NOT NULL,
+    nombre VARCHAR(100),
+    usuario VARCHAR(100),
+    contrasena VARCHAR(100),
+    correo_electronico VARCHAR(100),
+    telefono INTEGER,
+    direccion VARCHAR(50),
+    CONSTRAINT PK_proveedor PRIMARY KEY(id_proveedor)
+);
+
 
 
 CREATE TABLE Cliente (
- id_Cliente VARCHAR(12) NOT NULL,
- idProveedor VARCHAR(30),
+ id_cliente VARCHAR(12) NOT NULL,
+ proveedor_id VARCHAR(30),
  direccion VARCHAR(30), 
  nombre VARCHAR(255),
- tipoCliente VARCHAR(30), -- físico y jurídico
- correoElectronico VARCHAR(30),
+ tipo_cliente VARCHAR(30), -- físico y jurídico
+ correo_electronico VARCHAR(30),
 CONSTRAINT PK_Cliente PRIMARY KEY (id_Cliente),
-CONSTRAINT FK_Proveedor FOREIGN KEY (id_Proveedor) REFERENCES Proveedor (id_Proveedor)
+CONSTRAINT FK_Proveedor FOREIGN KEY (proveedor_id) REFERENCES Proveedor (id_proveedor)
 );
  
  CREATE TABLE Administrador (
-  id_Administrador VARCHAR(12) NOT NULL,
+  id_administrador VARCHAR(12) NOT NULL,
   contrasena VARCHAR(20) NOT NULL
 );
 
@@ -54,9 +57,9 @@ CONSTRAINT FK_Proveedor FOREIGN KEY (id_Proveedor) REFERENCES Proveedor (id_Prov
  
  
 
-INSERT INTO Proveedor (id_Proveedor, Nombre, Contrasena, CorreoElectronico, Telefono, Direccion)
+INSERT INTO Proveedor (id_proveedor, nombre, contrasena, correo_electronico, telefono, direccion)
 VALUES ('PROV0001', 'Proveedor Uno', 'contrasena123', 'proveedor1@example.com', 1234567890, 'Calle Principal 123');
-INSERT INTO Proveedor (id_Proveedor, Nombre, Contrasena, CorreoElectronico, Telefono, Direccion)
+INSERT INTO Proveedor (id_proveedor, nombre, contrasena, correo_electronico, telefono, direccion)
 VALUES ('PROV0002', 'Proveedor dos', 'contrasena124', 'proveedor2@example.com', 1234567899, 'Calle Principal 122');
 
 

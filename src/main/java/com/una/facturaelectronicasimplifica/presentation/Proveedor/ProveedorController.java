@@ -5,6 +5,8 @@ import com.una.facturaelectronicasimplifica.service.ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @org.springframework.stereotype.Controller("proveedores")
 public class ProveedorController {
@@ -16,9 +18,9 @@ public class ProveedorController {
         model.addAttribute("proveedores", service.ProveedorFindAll());
         return "/presentation/proveedores/View";
     }
-    @GetMapping("/presentation/proveedores/add")
-    public String add(Model model) {
-        model.addAttribute("proveedor", new ProveedorEntity());
-        return "/presentation/proveedores/Add";
+    @PostMapping("/presentation/proveedores/add")
+    public String add(@ModelAttribute ProveedorEntity proveedor) {
+        service.proveedorSave(proveedor);
+        return "redirect:/presentation/proveedores/Sucess";
     }
 }
