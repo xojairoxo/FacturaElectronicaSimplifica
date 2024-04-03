@@ -1,15 +1,12 @@
 package com.una.facturaelectronicasimplifica;
 
-import com.una.facturaelectronicasimplifica.data.ProveedorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class FacturaElectronicaSimplificaApplication implements CommandLineRunner {
-    @Autowired
-    private ProveedorRepository ProveedorRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(FacturaElectronicaSimplificaApplication.class, args);
     }
