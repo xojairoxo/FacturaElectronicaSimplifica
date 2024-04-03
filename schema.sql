@@ -2,64 +2,65 @@ DROP DATABASE IF EXISTS FacturaElectronicaSimplifica;
 CREATE DATABASE FacturaElectronicaSimplifica;
 USE FacturaElectronicaSimplifica;
 
-
-DROP table Proveedor;
-CREATE TABLE Proveedor (
-    id_proveedor INT auto_increment, 
-    cedula VARCHAR(12) NOT NULL,
+DROP DATABASE IF EXISTS FacturaElectronica;
+CREATE DATABASE FacturaElectronica;
+USE  FacturaElectronica;
+-- Tabla de Proveedor
+CREATE TABLE usuario (
+    id_usuario varchar(12) , 
     nombre VARCHAR(100),
-    usuario VARCHAR(100),
-    contrasena VARCHAR(100),
     correo_electronico VARCHAR(100),
-    telefono INTEGER,
-    direccion VARCHAR(50),
-    CONSTRAINT PK_proveedor PRIMARY KEY(id_proveedor)
+    contrasena VARCHAR(100),
+    activo bool, -- para activar o desactivar proveedores
+    telefono integer, 
+    rol varchar(30), -- PROV: proveedor, ADM: administrador
+    constraint PK_usuario primary key(id_usuario)
 );
-
-
-
-CREATE TABLE Cliente (
- id_cliente VARCHAR(12) NOT NULL,
- proveedor_id VARCHAR(30),
- direccion VARCHAR(30), 
- nombre VARCHAR(255),
- tipo_cliente VARCHAR(30), -- físico y jurídico
- correo_electronico VARCHAR(30),
-CONSTRAINT PK_Cliente PRIMARY KEY (id_Cliente),
-CONSTRAINT FK_Proveedor FOREIGN KEY (proveedor_id) REFERENCES Proveedor (id_proveedor)
+-- Tabla de Clientes
+CREATE TABLE cliente (
+    cliente_id VARCHAR(12) NOT NULL,
+    nombre VARCHAR(255),
+    correo_electronico VARCHAR(50),
+    usuario_id VARCHAR(12) NOT NULL,
+    CONSTRAINT PK_Cliente PRIMARY KEY (cliente_id),
+    CONSTRAINT FK_Usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario)
+);
+-- Tabla de Productos/Servicios
+CREATE TABLE producto (
+    producto_id INT NOT NULL,
+    codigo varchar (255),
+    nombre VARCHAR(255),
+    descripcion TEXT,
+    precio float,
+    total float,
+    usuario_id varchar(12),
+     constraint PK_Producto primary key(producto_id),
+     constraint FK_Producto foreign key (usuario_id) references usuario (id_usuario)
 );
  
- CREATE TABLE Administrador (
-  id_administrador VARCHAR(12) NOT NULL,
-  contrasena VARCHAR(20) NOT NULL
+-- ------------------------------------------------------------------------
+-- Tabla de Facturas
+CREATE TABLE factura (
+    factura_id INT not null,
+    fecha DATE,
+    total float,
+    cliente VARCHAR(12),
+    constraint Pk_facturas primary key (factura_id),
+	constraint Fk_facturas foreign key (cliente) references Cliente (cliente_id)
 );
-
--- CREATE TABLE Factura (
---   idFactura INT PRIMARY KEY AUTO_INCREMENT,
---   numeroFactura VARCHAR(20),
---   fechaEmision DATE,
---   nombreCliente VARCHAR(100),
---   detalles TEXT,
---   total DECIMAL(10, 2),
---   idProveedor INT,
---   FOREIGN KEY (idProveedor) REFERENCES Proveedor(idProveedor)
--- );
-
--- CREATE TABLE Producto (
---   idProducto INT PRIMARY KEY AUTO_INCREMENT,
---   nombre VARCHAR(100),
---   descripcion TEXT,
---   precio DECIMAL(10, 2),
---   impuestosAplicables DECIMAL(5, 2),
---   categoria VARCHAR(50)
--- );
-
- 
- 
-
-INSERT INTO Proveedor (id_proveedor, nombre, contrasena, correo_electronico, telefono, direccion)
-VALUES ('PROV0001', 'Proveedor Uno', 'contrasena123', 'proveedor1@example.com', 1234567890, 'Calle Principal 123');
-INSERT INTO Proveedor (id_proveedor, nombre, contrasena, correo_electronico, telefono, direccion)
-VALUES ('PROV0002', 'Proveedor dos', 'contrasena124', 'proveedor2@example.com', 1234567899, 'Calle Principal 122');
+ -- Tabla de Facturas-Productos RELACION 
+CREATE TABLE facturas_productos (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_producto INT NOT NULL,
+  id_factura INT NOT NULL,
+  CONSTRAINT Pk_facturas_productos PRIMARY KEY (id),
+  CONSTRAINT Fk_id_producto FOREIGN KEY (id_producto) REFERENCES Producto(producto_id),
+  CONSTRAINT Fk_id_factura FOREIGN KEY (id_factura) REFERENCES Factura(factura_id)
+);
+-- ------------------------------------------------------------------------
 
 
+select * from Proveedor;
+select * from Cliente;
+select * from Producto;
+-- DELETE FROM Producto where producto_id ="0" ;
